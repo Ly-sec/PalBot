@@ -1,0 +1,8 @@
+{
+  "token": "TOKEN",
+  "host": "IP",
+  "port": "PORT",
+  "rcon_port": "RCON_PORT",
+  "rcon_password": "ADMINPASSWORD",
+  "rcon_role": "RCON_ROLE"
+}
