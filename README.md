@@ -20,6 +20,8 @@ If you don't have an automatic startup script for your server, please be aware t
 
 ## How to use
 
+Go through the usual steps to create a bot over at https://discord.com/developers/ and copy the token and then invite the bot to your server.
+
 Download: https://github.com/Ly-sec/PalBot/releases/
 
 Or just clone the repo
