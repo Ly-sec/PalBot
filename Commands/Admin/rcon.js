@@ -56,7 +56,6 @@ module.exports = {
   execute(interaction) {
     const { options, member, guild, channel } = interaction;
     const subCommand = interaction.options.getSubcommand();
-    const logEmbed = new EmbedBuilder();
 
     const role = guild.roles.cache.find(role => role.name === config.rcon_role);
     if (!role) {
@@ -69,99 +68,78 @@ module.exports = {
       case "save":
         {
           if (member.roles.cache.some(r => r.name === config.rcon_role)){
-            conn.on('auth', function() {
-              console.log("Authed!");
-              conn.send(`Save`);
-            }).on('response', function(str) {
-            console.log("Got response: " + str);
-            }).on('error', function(err) {
-              console.log("Error: " + err);
-            }).on('end', function() {
-              console.log("Connection closed");
-              conn.disconnect();
-            });
-            logEmbed
-            .setColor("Green")
-            .setDescription(
-              "**Saved the server!**"
-            );
-            return interaction.reply({ embeds: [logEmbed], ephemeral: true });
+            rcon_command(`Save`);
+            set_and_send_logEmbed(interaction, "**Saved the server!**", "Green");
+            break;
           } else {
-            logEmbed
-            .setColor("Red")
-            .setDescription(
-              "**You do not have the permissions to kick someone!**"
-            );
-
-          return interaction.reply({ embeds: [logEmbed], ephemeral: true });
+            set_and_send_logEmbed(interaction, "You do not have the permissions to use rcon command!", "Red");
+            break;
           }
         }
       case "shutdown":
         {
           const sMessage = options.getString("shutdownmessage");
           const sTime = options.getString("shutdowntime");
+
           if (member.roles.cache.some(r => r.name === config.rcon_role)){
-            conn.on('auth', function() {
-              console.log("Authed!");
-              conn.send(`Shutdown ${sTime} ${sMessage.replace(/ /g,"_")}`);
-            }).on('response', function(str) {
-            console.log("Got response: " + str);
-            }).on('error', function(err) {
-              console.log("Error: " + err);
-            }).on('end', function() {
-              console.log("Connection closed");
-              conn.disconnect();
-            });
-
-            logEmbed
-            .setColor("Green")
-            .setDescription(
-              `**Shutting off the server in ${sTime} seconds!**`
-            );
-            return interaction.reply({ embeds: [logEmbed], ephemeral: true });
+            rcon_command(`Shutdown ${sTime} ${sMessage.replace(/ /g,"_")}`);
+            set_and_send_logEmbed(interaction, `**Shutting off the server in ${sTime} seconds!**`, "Green");
+            break;
           } else {
-            logEmbed
-            .setColor("Red")
-            .setDescription(
-              "**You do not have the permissions to kick someone!**"
-            );
-
-          return interaction.reply({ embeds: [logEmbed], ephemeral: true });
+            set_and_send_logEmbed(interaction, "You do not have the permissions to use rcon command!", "Red");
+            break;
           }
         }
       case "broadcast":
         {
           const text = options.getString("text");
           if (member.roles.cache.some(r => r.name === config.rcon_role)){
-            conn.on('auth', function() {
-              console.log("Authed!");
-              conn.send(`Broadcast ${text.replace(/ /g,"_")}`);
-            }).on('response', function(str) {
-            console.log("Got response: " + str);
-            }).on('error', function(err) {
-              console.log("Error: " + err);
-            }).on('end', function() {
-              console.log("Connection closed");
-              conn.disconnect();
-            });
-
-            logEmbed
-            .setColor("Green")
-            .setDescription(
-              `**Sent "${text.replace(/ /g,"_")}" to the server!**`
-            );
-            return interaction.reply({ embeds: [logEmbed], ephemeral: true });
-          
+            rcon_command(`Broadcast ${text.replace(/ /g,"_")}`);
+            set_and_send_logEmbed(interaction, `**Sent "${text.replace(/ /g,"_")}" to the server!**`, "Green");
+            break;
           } else {
-            logEmbed
-            .setColor("Red")
-            .setDescription(
-              "**You do not have the permissions to kick someone!**"
-            );
-
-          return interaction.reply({ embeds: [logEmbed], ephemeral: true });
+            set_and_send_logEmbed(interaction, "You do not have the permissions to use rcon command!", "Red");
+            break;
           }
         }
     }
   },
 };
+
+/**
+ * Make an embed with message and color settings
+ * @param message
+ * @param color
+ * @returns {Promise<Message<BooleanCache<Cached>>> | Promise<InteractionResponse<BooleanCache<Cached>>>}
+ */
+function set_and_send_logEmbed(interaction, message, color)
+{
+  const logEmbed = new EmbedBuilder();
+
+  logEmbed
+      .setColor(color)
+      .setDescription(
+          message
+      );
+
+  return interaction.reply({ embeds: [logEmbed], ephemeral: true });
+}
+
+/**
+ * Create a rcon command
+ * @param command
+ */
+function rcon_command(command)
+{
+  conn.on('auth', function() {
+    console.log("Authed!");
+    conn.send(command);
+  }).on('response', function(str) {
+    console.log("Got response: " + str);
+  }).on('error', function(err) {
+    console.log("Error: " + err);
+  }).on('end', function() {
+    console.log("Connection closed");
+    conn.disconnect();
+  });
+}
