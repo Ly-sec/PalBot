@@ -1,5 +1,4 @@
 const { loadFiles } = require("../Functions/fileLoader");
-var tynt = require("tynt");
 
 async function loadEvents(client) {
   console.time("Events loaded");

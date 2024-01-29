@@ -14,6 +14,6 @@
     "discord.js": "^14.11.0",
     "gamedig": "^5.0.0-beta.0",
     "glob": "^10.3.3",
-    "rcon": "^1.1.0"
+    "minecraft-rcon-client": "^2.1.2"
   }
 }

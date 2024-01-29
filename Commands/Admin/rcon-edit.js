@@ -9,7 +9,7 @@ const {
   
   module.exports = {
     data: new SlashCommandBuilder()
-      .setName("edit-rcon")
+      .setName("rcon-edit")
       .setDescription("Adds/removes user to/from the rcon role.")
       .addSubcommand((subcommand) =>
         subcommand
