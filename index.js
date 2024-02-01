@@ -91,7 +91,7 @@ const {
 
 const cleanId = str => str.replace(/\D/g, '').trim(); // Trim whitespaces
 
-  
+/*  
   const showPlayers = async () => {
     try {
       const { GameDig } = await import('gamedig');
@@ -105,7 +105,7 @@ const cleanId = str => str.replace(/\D/g, '').trim(); // Trim whitespaces
       })
         .then((state) => {
           const statusText = `${state.raw.attributes.PLAYERS_l}/${state.raw.settings.maxPublicPlayers}`;
-          client.user.setActivity(`${statusText}`, { type: ActivityType.Watching });
+          client.user.setActivity(`Players: ${statusText}`, { type: ActivityType.Watching });
         })
         .catch((error) => {
           console.log(`Server is offline, error: ${error}`);
@@ -113,14 +113,13 @@ const cleanId = str => str.replace(/\D/g, '').trim(); // Trim whitespaces
     } catch (err) {
       console.log(`Error: ${err}`);
     }
-  };
+  };*/
   
   // Run it once so it doesn't take 2 minutes for the status to appear
-  showPlayers();
-
+  //showPlayers();
 
   // Player count check, every 2 minutes
-  intervalId = setInterval(showPlayers, 2 * 60 * 1000);
+  //intervalId = setInterval(showPlayers, 2 * 60 * 1000);
   
   // Whitelist check, every 5 minutes
   intervalId = setInterval(connectRcon, 5 * 60 * 1000);
