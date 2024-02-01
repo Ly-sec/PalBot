@@ -32,7 +32,7 @@ module.exports = {
           { name: 'Server Port', value: "```" + `${config.port}` + "```",inline: true},
           { name: 'Players', value: "```" + `${state.raw.attributes.PLAYERS_l}/${state.raw.settings.maxPublicPlayers}` + "```", inline: true},
           { name: 'Days', value: "```" + `${state.raw.attributes.DAYS_l}` + "```", inline: true},
-          { name: 'Last Restart', value: "```" + `<t:${state.raw.attributes.CREATE_TIME_l}>` + "```", inline: true},
+          { name: 'Last Restart', value: "```" + `<t:${state.raw.attributes.CREATE_TIME_l}:T>` + "```", inline: true},
           { name: 'Password', value: "```" + `${state.raw.attributes.ISPASSWORD_b}` + "```", inline: true},
           { name: 'Version', value: "```" + `${state.raw.attributes.VERSION_s}` + "```", inline: true},
         )
