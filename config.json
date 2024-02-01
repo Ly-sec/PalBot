@@ -1,9 +1,9 @@
 {
-  "token": "w",
-  "host": "w",
+  "token": "BOT_TOKEN",
+  "host": "SERVER_IP",
   "port": 8211,
   "rcon_port": 25575,
-  "rcon_password": "W",
-  "rcon_role": "w",
+  "rcon_password": "RCON_PASSWORD",
+  "rcon_role": "RCON_ROLE",
   "whitelist_enabled": true
 }
