@@ -5,5 +5,5 @@
   "rcon_port": 25575,
   "rcon_password": "RCON_PASSWORD",
   "rcon_role": "RCON_ROLE",
-  "whitelist_enabled": true
+  "whitelist_enabled": false
 }
