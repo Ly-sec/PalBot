@@ -1,0 +1,9 @@
+{
+  "token": "w",
+  "host": "w",
+  "port": 8211,
+  "rcon_port": 25575,
+  "rcon_password": "W",
+  "rcon_role": "w",
+  "whitelist_enabled": true
+}
