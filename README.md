@@ -20,6 +20,8 @@ The whitelist is disabled by default so if you want to change that, use the `/wh
 
 `/whitelist-edit` - Gives you the option to add/remove users (steamId) from the whitelist.
 
+`/players` - Displays a list of players, ther userId and their SteamId.
+
 More commands are planned as soon as we get more informations on how the servers exactly work!
 
 
