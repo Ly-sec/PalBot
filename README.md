@@ -47,8 +47,27 @@ After that, you're basically good to go.
 
 Just run the bot with `node .`
 
+## Config Explanation
 
-
+Example Config:
+```js
+{
+  "token": "BOT_TOKEN",
+  "host": "SERVER_IP",
+  "port": 8211,
+  "rcon_port": 25575,
+  "rcon_password": "RCON_PASSWORD",
+  "rcon_role": "RCON_ROLE",
+  "whitelist_enabled": true
+}
+```
+token: The token of your bot (get it from here https://discord.com/developers/applications)
+host: Your server IP
+port: Your server port
+rcon_port: Your RCON port
+rcon_password: Your AdminPassword (check your server settings)
+rcon_role: The discord role (name) that should be allowed to use rcon commands
+whitelist_enabled: Enables/Disables the whitelist (you can always use /whitelist to change it)
 
 ## Authors
 
