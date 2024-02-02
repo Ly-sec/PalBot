@@ -4,29 +4,37 @@ const config = require("../../config.json");
 
 module.exports = {
   data: new SlashCommandBuilder()
-    .setName("broadcast")
-    .setDescription("Broadcast a message to the server.")
+    .setName("shutdown")
+    .setDescription("Saves the server.")
+    .addStringOption(option =>
+      option
+        .setName("time")
+        .setDescription("Specify the shutdown delay in seconds.")
+        .setRequired(true)
+    )
     .addStringOption(option =>
       option
         .setName("text")
-        .setDescription("What should it broadcast?")
+        .setDescription("Message to the server.")
         .setRequired(true)
     ),
 
   async execute(interaction) {
-    const { options, member } = interaction;
+    const { member, options } = interaction;
 
     try {
       await rconHandler.connect();
 
-      const text = options.getString("text");
       if (member.roles.cache.some(r => r.name === config.rcon_role)) {
-        const response = await rconHandler.sendCommand(`Broadcast ${text.replace(/ /g, "_")}`);
+        const time = options.getString("time");
+        const text = options.getString("text") || ""; // Default to an empty string if no text provided
+
+        const response = await rconHandler.sendCommand(`ShutDown ${time} ${text.replace(/ /g, "_")}`);
         console.log(response);
 
         const embed = new EmbedBuilder()
           .setColor(0x3498db)
-          .setTitle("Broadcast Successful")
+          .setTitle("Server shutdown initiated.")
           .addFields(
             { name: "Response", value: "```" + response + "```" }
           );
@@ -37,7 +45,6 @@ module.exports = {
       }
     } catch (error) {
       console.error(`Error executing command: ${error.message}`);
-      await interaction.reply(`Error executing command: ${error.message}`);
     } finally {
       rconHandler.disconnect();
     }
