@@ -1,8 +1,7 @@
 
 # PalBot - Your Palworld Server Companion
 PalBot is a discord bot written in NodeJS.
-
-It's aimed towards people who are hosting their own Palworld servers.
+It is aimed towards people who are hosting their own Palworld servers.
 
 # Features
 Newest feature: Whitelist
@@ -10,15 +9,21 @@ The bot will check every 5 minutes (changable in the index.js) if every user in 
 The whitelist is disabled by default so if you want to change that, use the `/whitelist` command.
 
 # Commands
-`/Server` - Gives you basic informations about your Palworld server. Be aware though that the "current Players" is not always correct. Gamedig maybe fetches that wrong, not sure.
+`/server` - Gives you basic informations about your Palworld server. Be aware though that the "current Players" is not always correct. Gamedig maybe fetches that wrong, not sure.
 
 `/rcon-edit` - A simple way of managing the people that should be allowed to use the RCON commands. This is made possible through discords role system.
 
-`/rcon` - This is where the magic happens. You're able to send messages to the server, save the server and also shut the server off.
+`/broadcast` - Let's you send messages to the server.
+
+`/save` - Let's you save the server.
+
+`/shutdown` - Lets you turn off the server (with specific delay (seconds) and a text).
 
 `/whitelist` - Ability to enable/disable the whitelist.
 
 `/whitelist-edit` - Gives you the option to add/remove users (steamId) from the whitelist.
+
+`/players` - Displays a list of players, ther userId and their SteamId.
 
 More commands are planned as soon as we get more informations on how the servers exactly work!
 
@@ -45,8 +50,27 @@ After that, you're basically good to go.
 
 Just run the bot with `node .`
 
+## Config Explanation
 
-
+Example Config:
+```js
+{
+  "token": "BOT_TOKEN",
+  "host": "SERVER_IP",
+  "port": 8211,
+  "rcon_port": 25575,
+  "rcon_password": "RCON_PASSWORD",
+  "rcon_role": "RCON_ROLE",
+  "whitelist_enabled": false
+}
+```
+token: The token of your bot (get it from here https://discord.com/developers/applications)
+host: Your server IP
+port: Your server port
+rcon_port: Your RCON port
+rcon_password: Your AdminPassword (check your server settings)
+rcon_role: The discord role (name) that should be allowed to use rcon commands
+whitelist_enabled: Enables/Disables the whitelist (you can always use /whitelist to change it)
 
 ## Authors
 
