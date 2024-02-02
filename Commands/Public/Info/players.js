@@ -18,17 +18,31 @@ module.exports = {
         .setColor('#0099ff')
         .setTitle('Current Players on the Server');
 
+      let names = "";
+      let playerIDs = "";
+      let steamIDs = "";
+      let hasPlayers = false;
+
       for (const playerData of playerList) {
         if (playerData && playerData.trim() !== "" && playerData.includes(',')) {
           const [name, playerID, steamID] = playerData.split(',');
           if (name && playerID && steamID) {
-            embed.addFields(
-              { name: 'Name', value: "```" + `${name.trim()}` + "```", inline: true },
-              { name: 'Player ID', value: "```" + `${playerID.trim()}` + "```", inline: true },
-              { name: 'Steam ID', value: "```" + `${steamID.trim()}` + "```", inline: true }
-            );
+            names += `${name.trim()}\n`;
+            playerIDs += `${playerID.trim()}\n`;
+            steamIDs += `${steamID.trim()}\n`;
+            hasPlayers = true;
           }
         }
+      }
+
+      if (hasPlayers) {
+        embed.addFields(
+          { name: 'Names', value: "```" + names + "```", inline: true },
+          { name: 'Player IDs', value: "```" + playerIDs + "```", inline: true },
+          { name: 'Steam IDs', value: "```" + steamIDs + "```", inline: true }
+        );
+      } else {
+        embed.setDescription("No players online.");
       }
 
       await interaction.reply({ embeds: [embed] });
