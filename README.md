@@ -3,6 +3,9 @@
 PalBot is a discord bot written in NodeJS.
 It is aimed towards people who are hosting their own Palworld servers.
 
+# Updates
+Latest update: reworked the RCON handling, reworked the rcon command (moved most of it into separate commands)
+
 # Features
 Newest feature: Whitelist
 The bot will check every 5 minutes (changable in the index.js) if every user in the server is whitelisted.
