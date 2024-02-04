@@ -27,9 +27,9 @@ module.exports = {
         if (playerData && playerData.trim() !== "" && playerData.includes(',')) {
           const [name, playerID, steamID] = playerData.split(',');
           if (name && playerID && steamID) {
-            names += `${name.trim()}\n`;
-            playerIDs += `${playerID.trim()}\n`;
-            steamIDs += `${steamID.trim()}\n`;
+            names += `${name.trim().normalize()}\n`;
+            playerIDs += `${playerID.trim().normalize()}\n`;
+            steamIDs += `${steamID.trim().normalize()}\n`;
             hasPlayers = true;
           }
         }
