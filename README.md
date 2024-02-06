@@ -51,13 +51,21 @@ Config explanation:
 ```
 
 token = Your bot token
+
 host = Your PUBLIC server IP
+
 port = Your server port
+
 rcon_port = Your rcon port
+
 rcon_password = Your AdminPassword (set in your server config)
+
 rcon_role = The role (name) that should be allowed to use rcon commands
+
 whitelist_role = The role name that should be allowed to add people to the whitelist. If you don't specify any role for that, it will use the rcon_role instead.
+
 whitelist_enabled = If true: checks for peoples steam id and kicks if they arent in whitelist.txt.
+
 whitelist_time = How often the bot should check for whitelist entries (in minutes)
 
 ## How to use
