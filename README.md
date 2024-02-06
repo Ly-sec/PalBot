@@ -33,6 +33,33 @@ __Warning__
 
 If you don't have an automatic startup script for your server, please be aware that there is no way to restart the server via the bot (for now)!
 
+# Informations
+Config explanation:
+
+```
+{
+  "token": "BOT_TOKEN",
+  "host": "SERVER_IP",
+  "port": 8211,
+  "rcon_port": 25575,
+  "rcon_password": "RCON_PASSWORD",
+  "rcon_role": "RCON_ROLE",
+  "whitelist_role": "WHITELIST_ROLE",
+  "whitelist_enabled": false,
+  "whitelist_time": 3
+}
+```
+
+token = Your bot token
+host = Your PUBLIC server IP
+port = Your server port
+rcon_port = Your rcon port
+rcon_password = Your AdminPassword (set in your server config)
+rcon_role = The role (name) that should be allowed to use rcon commands
+whitelist_role = The role name that should be allowed to add people to the whitelist
+whitelist_enabled = If true: checks for peoples steam id and kicks if they arent in whitelist.txt.
+whitelist_time = How often the bot should check for whitelist entries (in minutes)
+
 ## How to use
 
 Go through the usual steps to create a bot over at https://discord.com/developers/ and copy the token and then invite the bot to your server.
@@ -57,4 +84,3 @@ Just run the bot with `node .`
 ## Authors
 
 - [@Ly-sec](https://github.com/Ly-sec)
-
