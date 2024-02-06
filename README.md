@@ -6,15 +6,21 @@ It's aimed towards people who are hosting their own Palworld servers.
 
 # Features
 Newest feature: Whitelist
-The bot will check every 5 minutes (changable in the index.js) if every user in the server is whitelisted.
+The bot will check every 3 minutes (changable in the config.json) if every user in the server is whitelisted.
 The whitelist is disabled by default so if you want to change that, use the `/whitelist` command.
 
 # Commands
-`/Server` - Gives you basic informations about your Palworld server. Be aware though that the "current Players" is not always correct. Gamedig maybe fetches that wrong, not sure.
+`/server` - Gives you basic informations about your Palworld server. Be aware though that the "current Players" is not always correct.
+
+`/players` - Let's you fetch a list of online players (including steamId and userId).
 
 `/rcon-edit` - A simple way of managing the people that should be allowed to use the RCON commands. This is made possible through discords role system.
 
-`/rcon` - This is where the magic happens. You're able to send messages to the server, save the server and also shut the server off.
+`/broadcast` - Let's you send messages to the server through rcon.
+
+`/save` - Let's you save the server through rcon.
+
+`/shutdown` - Let's you shut the server down with specified time and message.
 
 `/whitelist` - Ability to enable/disable the whitelist.
 
