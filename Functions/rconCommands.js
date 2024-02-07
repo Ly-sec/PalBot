@@ -184,9 +184,9 @@ const rconPlayers = async (interaction) => {
       if (playerData && playerData.trim() !== "" && playerData.includes(',')) {
         const [name, playerID, steamID] = playerData.split(',');
         if (name && playerID && steamID) {
-          names += `${name.trim().toString('utf8')}\n`;
-          playerIDs += `${playerID.trim().toString('utf8')}\n`;
-          steamIDs += `${steamID.trim().toString('utf8')}\n`;
+          names += `${name.trim()}\n`;
+          playerIDs += `${playerID.trim()}\n`;
+          steamIDs += `${steamID.trim()}\n`;
           hasPlayers = true;
         }
       }
