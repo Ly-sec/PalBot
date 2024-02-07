@@ -21,6 +21,6 @@ module.exports = {
     const time = options.getString("time");
     const text = options.getString("text") || ""; // Default to an empty string if no text provided
 
-    await executeRconShutdown(member, interaction, time, text);
+    await rconShutdown(member, interaction, time, text);
   },
 };
