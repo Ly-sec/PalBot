@@ -1,4 +1,5 @@
 const { SlashCommandBuilder } = require("discord.js");
+const { rconShutdown } = require("../../../Functions/rconCommands");
 
 module.exports = {
   data: new SlashCommandBuilder()
