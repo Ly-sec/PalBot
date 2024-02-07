@@ -39,7 +39,7 @@ Head over to https://discord.com/developers/ and create a new application then c
 
 Now click on the "Bot" tab and scroll down until you see "Privileged Gateway Intents".
 
-Turn on all of the 3 intents (Presence, Server Members and Message Content).
+Turn on all of the 3 intents (Presence, Server Members and Message Content) and don't forget to save :).
 
 Now scroll up again and copy your token and put it into the `config.json`.
 
