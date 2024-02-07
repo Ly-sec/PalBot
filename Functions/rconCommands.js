@@ -167,7 +167,7 @@ const rconPlayers = async (interaction) => {
     const response = await sendCommand(rconClient, `ShowPlayers`);
 
     const playersDataWithoutHeaders = response.replace(/^name,playeruid,steamid\s+/i, '');
-    const sanitizedResponse = playersDataWithoutHeaders.replace(/[\x00-\x1F\x7F-\x9F\u200B-\u200F\uFEFF]/g, '')
+    const sanitizedResponse = playersDataWithoutHeaders.replace(/[\x00-\x1F\x7F-\x9F\u200B-\u200F\uFEFF]|[^\x20-\x7E\u{4E00}-\u{9FFF}\u{3040}-\u{309F}\u{30A0}-\u{30FF}\u{AC00}-\u{D7AF}\u{0400}-\u{04FF}\u{0E00}-\u{0E7F}]/ug, '')
     const playerList = sanitizedResponse.split("\n");
 
     console.log(playerList)
