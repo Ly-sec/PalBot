@@ -103,4 +103,4 @@ whitelist_time = How often the bot should check for whitelist entries (in minute
 - [@Ly-sec](https://github.com/Ly-sec)
 
 
-[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/gbraad)
+[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/Lysec)
