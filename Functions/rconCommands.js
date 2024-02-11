@@ -167,10 +167,9 @@ const rconPlayers = async (interaction) => {
     const response = await sendCommand(rconClient, `ShowPlayers`);
 
     const playersDataWithoutHeaders = response.replace(/^name,playeruid,steamid\s+/i, '');
-    const sanitizedResponse = playersDataWithoutHeaders.replace(/[\x00-\x1F\x7F-\x9F\u200B-\u200F\uFEFF]|[^\x20-\x7E\u{4E00}-\u{9FFF}\u{3040}-\u{309F}\u{30A0}-\u{30FF}\u{AC00}-\u{D7AF}\u{0400}-\u{04FF}\u{0E00}-\u{0E7F}]/ug, '')
+    const sanitizedResponse = playersDataWithoutHeaders.replace(/[\x00-\x1F\x7F-\x9F\u200B-\u200F\uFEFF]|[^\x20-\x7E\u{4E00}-\u{9FFF}\u{3040}-\u{309F}\u{30A0}-\u{30FF}\u{AC00}-\u{D7AF}\u{0400}-\u{04FF}\u{0E00}-\u{0E7F}]/ug, '');
     const playerList = sanitizedResponse.split("\n");
 
-    console.log(playerList)
     const embed = new EmbedBuilder()
       .setColor('#0099ff')
       .setTitle('Current Players on the Server');
@@ -181,8 +180,9 @@ const rconPlayers = async (interaction) => {
     let hasPlayers = false;
 
     for (const playerData of playerList) {
-      if (playerData && playerData.trim() !== "" && playerData.includes(',')) {
-        const [name, playerID, steamID] = playerData.split(',');
+      const match = playerData.match(/([^,]+),([^,]+),([^,\r\n]+)/);
+      if (match) {
+        const [, name, playerID, steamID] = match;
         if (name && playerID && steamID) {
           names += `${name.trim()}\n`;
           playerIDs += `${playerID.trim()}\n`;
