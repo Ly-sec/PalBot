@@ -165,43 +165,40 @@ const rconPlayers = async (interaction) => {
     rconClient = await connect();
 
     const response = await sendCommand(rconClient, `ShowPlayers`);
+    console.log(response);
 
-    const playersDataWithoutHeaders = response.replace(/^name,playeruid,steamid\s+/i, '');
-    const sanitizedResponse = playersDataWithoutHeaders.replace(/[\x00-\x1F\x7F-\x9F\u200B-\u200F\uFEFF]|[^\x20-\x7E\u{4E00}-\u{9FFF}\u{3040}-\u{309F}\u{30A0}-\u{30FF}\u{AC00}-\u{D7AF}\u{0400}-\u{04FF}\u{0E00}-\u{0E7F}]/ug, '');
-    const playerList = sanitizedResponse.split("\n");
+    // Split the response by lines
+    const playerList = response.trim().split('\n').slice(1); // Remove the header
 
-    const embed = new EmbedBuilder()
-      .setColor('#0099ff')
-      .setTitle('Current Players on the Server');
-
-    let names = "";
-    let playerIDs = "";
-    let steamIDs = "";
-    let hasPlayers = false;
+    // Arrays to store individual data
+    let names = [];
+    let playerIDs = [];
+    let steamIDs = [];
 
     for (const playerData of playerList) {
-      const match = playerData.match(/([^,]+),([^,]+),([^,\r\n]+)/);
-      if (match) {
-        const [, name, playerID, steamID] = match;
-        if (name && playerID && steamID) {
-          names += `${name.trim()}\n`;
-          playerIDs += `${playerID.trim()}\n`;
-          steamIDs += `${steamID.trim()}\n`;
-          hasPlayers = true;
-        }
+      const [name, playerID, steamID] = playerData.split(',').map(part => part.trim());
+
+      if (name && playerID && steamID) {
+        names.push(name);
+        playerIDs.push(playerID);
+        steamIDs.push(steamID);
       }
     }
 
-    if (hasPlayers) {
-      embed.addFields(
-        { name: 'Names', value: "```" + names + "```", inline: true },
-        { name: 'Player IDs', value: "```" + playerIDs + "```", inline: true },
-        { name: 'Steam IDs', value: "```" + steamIDs + "```", inline: true }
+    const embed = new EmbedBuilder()
+      .setColor('#0099ff')
+      .setTitle('Player Information')
+      .addFields(
+        { name: 'Names', value: names.join('\n'), inline: true },
+        { name: 'Player IDs', value: playerIDs.join('\n'), inline: true },
+        { name: 'Steam IDs', value: steamIDs.join('\n'), inline: true }
       );
-    } else {
+
+    if (names.length === 0) {
       embed.setDescription("No players online.");
     }
 
+    // Send the embed as a reply
     await interaction.reply({ embeds: [embed] });
 
   } catch (error) {
@@ -213,6 +210,10 @@ const rconPlayers = async (interaction) => {
     }
   }
 }
+
+
+
+
 
 
 module.exports = {
