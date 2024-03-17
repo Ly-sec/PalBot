@@ -56,7 +56,7 @@ Open the folder in your favorite code editor and then follow these quick steps:
 
 `npm install` - this will install all dependencies.
 
-Now open the `config.json` file and enter ALL the informations.
+Now open the `config.json` file and enter all the informations.
 
 After that, you're basically good to go.
 
